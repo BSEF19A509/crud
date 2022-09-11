@@ -38,6 +38,18 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public boolean update(String name,String roll) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL("UPDATE "+STUDENT_TABLE+" SET "+ STUDENT_NAME +"= "+"'"+name+"' "+ " WHERE "+ STUDENT_ROLL+" = "+"'"+roll+"'");
+        return true;
+    }
+
+    public boolean delete(String name, String roll) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL("Delete FROM "+STUDENT_TABLE+" WHERE "+ STUDENT_NAME +"= "+"'"+name+"' "+ " AND "+ STUDENT_ROLL+" = "+"'"+roll+"'");
+        return true;
+    }
+
     public void  addStudent(StudentModel STUDENTModel){
         SQLiteDatabase db = this.getWritableDatabase();
         //Hash map, as we did in bundles

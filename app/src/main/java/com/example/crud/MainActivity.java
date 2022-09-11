@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button add , view;
+    Button add , view , update , delete;
     EditText name,roll_no;
     ListView lst;
 
@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
         add = findViewById(R.id.btnAdd);
         view = findViewById(R.id.btnView);
+        update = findViewById(R.id.btnUpdate);
+        delete = findViewById(R.id.btnDelete);
         name = findViewById(R.id.stName);
         roll_no = findViewById(R.id.stRoll);
         lst = findViewById(R.id.lst1);
@@ -48,6 +50,23 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DBHelper dbHelper = new DBHelper(MainActivity.this);
+                dbHelper.update(name.getText().toString(),roll_no.getText().toString());
+
+            }
+        });
+
+        delete.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DBHelper dbHelper = new DBHelper(MainActivity.this);
+                dbHelper.delete(name.getText().toString(),roll_no.getText().toString());
+            }
+        }));
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
